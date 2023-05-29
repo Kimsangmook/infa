@@ -1,0 +1,43 @@
+version: "3"
+
+networks:
+  my_bridge:
+    driver: bridge
+
+services:
+  my_db:
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    container_name: my_db
+    cap_add:
+      - sys_nice
+    networks:
+      - my_bridge
+    environment:
+      - TZ=Asia/Seoul
+      - MYSQL_ROOT_PASSWORD=palmAI!@34
+      - MYSQL_USER=mct
+      - MYSQL_PASSWORD=adotAI!@34
+    ports:
+      - "3306:3306"
+    restart: always
+    # command: sh -c "/create_directory_mysql.sh"
+    volumes:
+      - /$HOME/mysql:/var/lib/mysql
+
+  my_web:
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    container_name: my_web
+    networks:
+      - my_bridge
+    environment:
+      - TZ=Asia/Seoul
+    ports:
+      - "3000:3000"
+    restart: always
+    # command: sh -c "/create_directory_www.sh"
+    volumes:
+      - /$HOME/app/www:/var/www/html
