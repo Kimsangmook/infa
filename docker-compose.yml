@@ -9,6 +9,7 @@ services:
     build:
       context: ./db
       dockerfile: Dockerfile
+    #dockerfile gusu에서 에러
     container_name: my_db
     cap_add:
       - sys_nice
@@ -23,6 +24,7 @@ services:
       - "3306:3306"
     restart: always
     # command: sh -c "/create_directory_mysql.sh"
+    
     volumes:
       - /$HOME/mysql:/var/lib/mysql
 
