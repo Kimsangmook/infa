@@ -17,9 +17,9 @@ services:
       - my_bridge
     environment:
       - TZ=Asia/Seoul
-      - MYSQL_ROOT_PASSWORD=palmAI!@34
+      - MYSQL_ROOT_PASSWORD=!1qaz@2wsx
       - MYSQL_USER=mct
-      - MYSQL_PASSWORD=adotAI!@34
+      - MYSQL_PASSWORD=1234
     ports:
       - "3306:3306"
     restart: always
